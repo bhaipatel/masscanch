@@ -1,0 +1,21 @@
+id: authorization
+
+info:
+  name: Cache Poisoning
+  author: melbadry9 & xelkomy
+  severity: low
+
+requests:
+  - raw:
+      - |
+        GET /?mel=9 HTTP/1.1
+        authorization: cache.melbadry9.com
+
+      - |
+        GET /?mel=9 HTTP/1.1
+
+    req-condition: true
+    matchers:
+      - type: dsl
+        dsl:
+          - 'contains(body_2, "cache.melbadry9.com") == true'

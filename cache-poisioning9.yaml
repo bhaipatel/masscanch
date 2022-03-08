@@ -1,0 +1,27 @@
+id: Fastly-Host  
+
+info:
+  name: Cache Poisoning
+  author: melbadry9 & xelkomy
+  severity: low
+
+requests:
+  - raw:
+      - |
+        GET /?mel=9 HTTP/1.1
+        Fastly-Host: cache.melbadry9.com
+        Fastly-Orig-Accept-Encoding: cache.melbadry9.com
+        Fastly-Orig-Host: cache.melbadry9.com
+        Fastly-Region: cache.melbadry9.com
+        Fastly-Restarts: cache.melbadry9.com
+        fastly-soc-x-request-id: cache.melbadry9.com
+        fastly-ssl: cache.melbadry9.com
+
+      - |
+        GET /?mel=9 HTTP/1.1
+
+    req-condition: true
+    matchers:
+      - type: dsl
+        dsl:
+          - 'contains(body_2, "cache.melbadry9.com") == true'
